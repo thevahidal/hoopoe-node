@@ -1,6 +1,6 @@
 {
     "name": "hoopoe-node",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Node SDK for Hoopoe",
     "main": "index.js",
     "scripts": {
