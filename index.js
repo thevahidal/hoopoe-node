@@ -1,14 +1,15 @@
 const axios = require('axios');
+
 const constants = require('./constants').default;
+const utils = require('./utils');
 
 class Hoopoe {
     constructor(args = {}) {
         if (!args.api_key) {
             throw new Error('API key is required');
         }
-        console.log(constants)
 
-        if (args.version && !constants.VERSIONS.includes(args.version)) {
+        if (args.version && !constants.VERSIONS.includes(parseInt(args.version))) {
             throw new Error('Invalid version');
         }
 
@@ -23,11 +24,11 @@ class Hoopoe {
         this.headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'X-API-Key': 'Bearer ' + this.api_key
+            'X-API-Key': this.api_key
         };
     }
 
-    async upupa(message, extra = {}) {
+    async upupa(message, extra = {}, includeTraceBack = true) {
         if (!message) {
             throw new Error('Message is required');
         }
@@ -36,6 +37,15 @@ class Hoopoe {
             message,
             extra
         };
+
+        // include code trace back
+        if (includeTraceBack) {
+            const { stack } = utils.getThisLine();
+
+            data.extra.trace_back = {
+                "stack": stack
+            }
+        }
         const response = await axios.post(`${this.base_url}/upupa/`, data, { headers: this.headers });
         return response.data
     }

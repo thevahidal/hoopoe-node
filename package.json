@@ -25,5 +25,8 @@
     "homepage": "https://github.com/thevahidal/hoopoe-node#readme",
     "dependencies": {
         "axios": "^0.24.0"
+    },
+    "devDependencies": {
+        "dotenv": "^10.0.0"
     }
 }

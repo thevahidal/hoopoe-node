@@ -70,6 +70,10 @@ await hoopoe.upupa("Your message here", {
 })
 ```
 
+By default the ```upupa``` command will send the code trace back, you have the option to disable it:
+```python
+await hoopoe.upupa("", {}, false)
+```
 <!-- ROADMAP -->
 <!-- ## Roadmap
 
